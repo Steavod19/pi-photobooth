@@ -17,10 +17,10 @@ from kivy.graphics import Color, Rectangle
 photoPath = "/home/pi/photobooth/"
 photoName = time.strftime("%Y%m%d%H%M%S") + "_photobooth.jpg"
 photoResize = 512, 384
-photoTitle = "Fred's Photo Booth!"
+photoTitle = "Steves's Photo Booth!"
 
 # Define printer
-# printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
+printer = Adafruit_Thermal("/dev/ttyAMA0", 19200, timeout=5)
 
 # Callback function for photo button
 def photo_callback(obj):
@@ -61,7 +61,8 @@ class MyApp(App):
                 photoButton = Button(text="photo", size_hint=(.20, 1)) # Button: 20% width, 100% height
                 photoButton.bind(on_press=photo_callback) # when pressed, trigger the photo_callback function
                 printButton = Button(text="print", size_hint=(.20, 1)) # Button: 20% width, 100% height
-                printButton.bind(on_press=print_callback) # when pressed, trigger the print_callback function
+                # printButton.bind(on_press=print_callback) # when pressed, trigger the print_callback function
+                printButton.bind(on_press=photo_callback) # when pressed, trigger the print_callback function
 
                 # Periodically refresh the displayed photo using the callback function
                 Clock.schedule_interval(self.callback, 1)
